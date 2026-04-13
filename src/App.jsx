@@ -28,6 +28,16 @@ function App() {
           element={<IsAnon> <LoginPage /> </IsAnon>} 
         />
 
+        <Route 
+          path="/notebooks"
+          element={<IsPrivate> <NotebookListPage /> </IsPrivate>}
+        />
+
+        <Route 
+          path="/notebooks/:id"
+          element={<IsPrivate> <NotebookPage /> </IsPrivate>}
+        />
+
       </Routes>
       
     </div>
