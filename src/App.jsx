@@ -29,6 +29,11 @@ function App() {
         />
 
         <Route 
+          path="/sheets/:id"
+          element={<IsPrivate> <SheetPage /> </IsPrivate>}
+        />
+
+        <Route 
           path="/notebooks"
           element={<IsPrivate> <NotebookListPage /> </IsPrivate>}
         />
