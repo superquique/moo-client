@@ -26,20 +26,19 @@ function Note ({length, accidental, x, y, absIndex, gap}) {
     return (
         <>
             {[...Array(extraBars).keys()].map((_, i) => {
-                const dIndex = i + 1
                 return (<line
-                    key={y + dIndex * gap}
-                    x1={x}
-                    y1={absIndex > 9 ? 10 * gap + i * gap : 4 * gap - i * gap}
-                    x2={x + 14}
-                    y2={absIndex > 9 ? 10 * gap + i * gap : 4 * gap - i * gap}
-                    style={{stroke: "#494949", strokeWidth: 2}}
+                    key={`extra-bar-${i}`}
+                    x1={x - 1}
+                    y1={absIndex > 9 ? 13 * gap + i * gap : - 1 * gap - i * gap}
+                    x2={x + 9}
+                    y2={absIndex > 9 ? 13 * gap + i * gap : - 1 * gap - i * gap}
+                    style={{stroke: "black", strokeWidth: 1}}
                 />)
             })}
-            <text x={x - 10} y={y} fill="red" fontSize="35">
+            <text x={x - 10} y={y} fill="red" fontSize="20">
                 {accidentals[accidental]}
             </text>
-            <text x={x} y={y} fill="black" fontSize="35">
+            <text x={x} y={y} fill="black" fontSize="20">
                 {lengths[length]}
             </text>
         </>        
