@@ -4,18 +4,19 @@ import toast, { Toaster } from 'react-hot-toast';
 import Staff from '../components/music/Staff';
 import sheetsService from '../services/sheets.service';
 import useDebounce from "../hooks/useDebounce";
-import { divideMesaures } from '../decoding/mooParser';
+import { divideMesaures, divideStaffs } from '../decoding/mooParser';
 import { BackspaceIcon } from '@heroicons/react/24/outline';
 
 function SheetPage ({}) {
     const [sheet, setSheet] = useState(null);
     const [measures, setMeasures] = useState(null);
+    const [staffs, setStaffs] = useState(null);
     const [selectedLength, setSelectedLength] = useState("4")
     const debouncedSheet = useDebounce(sheet, 2000);
     const { id } = useParams();
-    //const measures = [0, 1, 2, 3];
-    const staffs = [2, 3, 4, 5, 6, 7, 8];
-    
+
+    const measuresPerStaff = 4;
+
     useEffect(() => {
         console.log("Updating sheet with...", debouncedSheet);
         if (debouncedSheet !== null) {
@@ -25,7 +26,18 @@ function SheetPage ({}) {
 
     useEffect(() => {
         if (sheet !== null && sheet.notes) {
-            setMeasures(divideMesaures(sheet.notes.split(" "), parseInt(sheet.timeSignature.split("/")[0]), parseInt(sheet.timeSignature.split("/")[1])));
+            // setMeasures(divideMesaures(sheet.notes.split(" "), 
+            //     parseInt(sheet.timeSignature.split("/")[0]), 
+            //     parseInt(sheet.timeSignature.split("/")[1]))
+            // );
+
+            setStaffs(divideStaffs(
+                sheet.notes.split(" "),
+                measuresPerStaff,
+                parseInt(sheet.timeSignature.split("/")[0]), 
+                parseInt(sheet.timeSignature.split("/")[1])
+            ));
+
         } else {
             setMeasures([]);
         }
@@ -74,10 +86,7 @@ function SheetPage ({}) {
 
     const deleteNote = (e) => {
         const notes = sheet.notes.split(" ");
-        console.log("deleting notes", notes);
         notes.pop();
-        console.log("new notes", notes);
-        console.log("notes string", notes.join(" "));
         onChange(notes.join(" "), "notes");
     }
 
@@ -92,8 +101,6 @@ function SheetPage ({}) {
             </div>
         )
     }
-
-    console.log("measures", measures);
 
     return (
         <>
@@ -177,22 +184,28 @@ function SheetPage ({}) {
                     ]} /> */}
 
                     <rect width="100%" height="100%" fill="red" fillOpacity="0.3" />
+                    
+                    { staffs && 
+                        <Staff 
+                            clef={sheet.clef}
+                            timeSignature={sheet.timeSignature}
+                            showTimeSignature={true}
+                            measures={staffs[0]}
+                            y={0}
+                        />
+                    }
 
-                    <Staff 
-                        offset={0}
-                        clef={sheet.clef}
-                        timeSignature={sheet.timeSignature}
-                        measures={measures}
-                    />
-
-                    {/* { 
-                        staffs.map((staff) => (  
+                    { staffs &&
+                        staffs.slice(1).map((staff, i) => (  
                             <Staff 
-                                key={staff}
-                                offset={staff * 150} 
+                                key={`staff-${i}`}
+                                timeSignature={sheet.timeSignature}
+                                showTimeSignature={false}
+                                measures={staff}
+                                y={`${i * 20 + 20}%`}
                             />
                         ))
-                    } */}
+                    }
                 </svg>
             </section>
         </>

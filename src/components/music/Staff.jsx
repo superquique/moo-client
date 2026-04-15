@@ -5,7 +5,7 @@ import TimeSignature from "./TimeSignature";
 import { decodeNote } from "../../decoding/mooParser";
 import Barline from "./Barline";
 
-function Staff({clef, timeSignature, measures, offset}) {
+function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
     const lines = [0, 1, 2, 3, 4]
     const gap = 5;
     const hGap = 20;
@@ -39,7 +39,7 @@ function Staff({clef, timeSignature, measures, offset}) {
     }
     
     return (
-        <svg x="0" y="0" width="100%" height="20%" viewBox="0 0 400 100" overflow="visible">
+        <svg x="0" y={y} width="100%" height="20%" viewBox="0 0 400 100" overflow="visible">
             <rect width="100%" height="100%" fill="blue" fillOpacity="0.3" />
 
             {lines.map((i) => (
@@ -54,7 +54,7 @@ function Staff({clef, timeSignature, measures, offset}) {
             ))}
 
             { clef && <Clef clef={clef} x="0" y="65" />}
-            { timeSignature && <TimeSignature bpm={bpm} noteValue={noteValue} x={hGap} y1={4 * gap/2 + 40} y2={8 * gap/2 + 40} />}
+            { showTimeSignature && <TimeSignature bpm={bpm} noteValue={noteValue} x={hGap} y1={4 * gap/2 + 40} y2={8 * gap/2 + 40} />}
             
             {measures && measures.map((measure, i) => {
                 let currentX = 20;
@@ -66,7 +66,6 @@ function Staff({clef, timeSignature, measures, offset}) {
                         const xPos = currentX;
 
                         let multiplier = bpm/note.length;
-                        console.log("multiplier", multiplier);
                         currentX += (multiplier * hGap);
 
                         return <Note 
