@@ -34,7 +34,7 @@ export function divideMesaures (notes, bpm, noteValue) {
         measureValue += 1 / decodedNote.length;
 
         if (measureValue === bpm/noteValue) {
-            measures.push(currentMeasure);
+            measures.push([...currentMeasure]);
             currentMeasure = [];
             measureValue = 0;
         }
@@ -45,4 +45,27 @@ export function divideMesaures (notes, bpm, noteValue) {
     }
 
     return measures;
+}
+
+// mps = measures per staff, bpm = beats per measure,
+// (keySignature = bpm / noteValue)
+export function divideStaffs (notes, mps, bpm, noteValue) {
+    const measures = divideMesaures(notes, bpm, noteValue);
+    
+    const staffs = [];
+    let currentStaff = [];
+
+    measures.forEach((measure) => {
+        currentStaff.push(measure);
+        if (currentStaff.length === mps) {
+            staffs.push([...currentStaff]);
+            currentStaff = [];
+        }
+    })
+
+    if (currentStaff.length > 0) {
+        staffs.push(currentStaff);
+    }
+
+    return staffs;
 }
