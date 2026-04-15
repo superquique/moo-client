@@ -6,7 +6,11 @@ function IsAnon( { children } ) {
   
   const { isLoggedIn, isLoading } = useContext(AuthContext);
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) return (
+    <div className="flex pt-10 h-screen items-start justify-center">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>
+  );
 
   if (isLoggedIn) {
     return <Navigate to="/" />;
