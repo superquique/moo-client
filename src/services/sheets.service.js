@@ -3,7 +3,7 @@ import axios from 'axios';
 class SheetsService {
   constructor() {
     this.api = axios.create({
-      baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5005'
+      baseURL: import.meta.env.VITE_API_URL
     });
 
     // Automatically set JWT token in the headers for every request

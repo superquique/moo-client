@@ -4,7 +4,7 @@ class AuthService {
   constructor() {
     // Create a new instance of axios with a custom configuration
     this.api = axios.create({
-      baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5005'
+      baseURL: import.meta.env.VITE_API_URL
       // We set our API's base URL so that all requests use the same base URL
     });
 
@@ -23,20 +23,14 @@ class AuthService {
 
   login = requestBody => {
     return this.api.post('/auth/login', requestBody);
-    // same as
-    // return axios.post("http://localhost:5005/auth/login");
   };
 
   signup = requestBody => {
     return this.api.post('/auth/signup', requestBody);
-    // same as
-    // return axios.post("http://localhost:5005/auth/singup");
   };
 
   verify = () => {
     return this.api.get('/auth/verify');
-    // same as
-    // return axios.post("http://localhost:5005/auth/verify");
   };
 }
 
