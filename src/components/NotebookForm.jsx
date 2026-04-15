@@ -25,22 +25,19 @@ function NotebookForm ({onSave, onCloseForm, existingNotebook = null}) {
             return
         }
 
-        if (name.length >= 3 && name.length <= 60 && pattern.test(name)){
+        if (name.length >= minLength && name.length <= maxLength && pattern.test(name)){
             onSave(name);
+            dialogRef.current.close();
             onCloseForm();
         }
     }
-    
-    const handleClose = () => {
-        setName("");
-    };
 
     return (
         <dialog
             ref={dialogRef}
-            onClose={handleClose} 
             id="add-notebook-modal" 
             className="modal"
+            onClose={onCloseForm}
         >
             <div className="modal-box">
                 <h3 className="font-bold text-lg">New Notebook</h3>
@@ -62,7 +59,13 @@ function NotebookForm ({onSave, onCloseForm, existingNotebook = null}) {
                     </p>
                     <div className="modal-action">
                         {/* if there is a button in form, it will close the modal */}
-                        <button onClick={e => onCloseForm(e)} className="btn">Cancel</button>
+                        <button 
+                            type="button" 
+                            onClick={e => dialogRef.current.close()} 
+                            className="btn"
+                        >
+                            Cancel
+                        </button>
                         <button onClick={e => handleSubmit(e)} className="btn">
                             { existingNotebook ? 'Save' : 'Create'}
                         </button>
