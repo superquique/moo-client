@@ -53,7 +53,7 @@ function AddSheetForm ({onAddSheet, onCloseForm}) {
     return (
         <dialog 
             ref={dialogRef} 
-            id="add-notebook-modal" 
+            id="add-sheet-modal" 
             className="modal"
             onClose={onCloseForm}
         >
