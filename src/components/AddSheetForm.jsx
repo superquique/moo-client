@@ -6,7 +6,7 @@ function AddSheetForm ({onAddSheet, onCloseForm}) {
     const [timeSignature, setTimeSignature] = useState("4/4");
     const dialogRef = useRef(null);
 
-    const pattern = /^[A-Za-z][A-Za-z0-9\- ]*$/;
+    const pattern = /^[A-Za-z][A-Za-z0-9\-ñÑ ]*$/;
     const minLength = 3;
     const maxLength = 60;
     const validClefs = ["treble", "alto", "base"];
@@ -57,59 +57,65 @@ function AddSheetForm ({onAddSheet, onCloseForm}) {
             className="modal"
             onClose={onCloseForm}
         >
-            <form method="dialog">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">New Sheet</h3>
+            <div className="flex-grow flex items-center justify-center">
+                <div className="card w-100 bg-base-100 card-xl shadow-sm">
+                    <div className="card-body">
 
-                    <input 
-                        type="text" 
-                        className="input validator" 
-                        placeholder="Title"
-                        pattern={pattern.source}
-                        minLength={minLength}
-                        maxLength={maxLength}
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required 
-                    />
-                    <p className="validator-hint">
-                        Must be 3 to 60 characters
-                        <br />containing only letters, numbers or dash
-                    </p>
-                    
-                    <select 
-                        className="select"
-                        value={clef}
-                        onChange={(e) => setClef(e.target.value)}
-                    >
-                        <option disabled={true}>Pick a clef</option>
-                        <option value="treble">𝄞 Treble</option>
-                        <option value="alto">𝄡 Alto</option>
-                        <option value="bass">𝄢 Bass</option>
-                    </select>
-                    <select 
-                        className="select"
-                        value={timeSignature}
-                        onChange={(e) => setTimeSignature(e.target.value)}
-                    >
-                        <option disabled={true}>Pick a time signature</option>
-                        <option value="4/4">4/4</option>
-                        <option value="3/4">3/4</option>
-                        <option value="2/4">2/4</option>
-                    </select>
-                    <div className="modal-action">
-                       <button 
-                            type="button" 
-                            onClick={e => dialogRef.current.close()} 
-                            className="btn"
-                        >
-                            Cancel
-                        </button>
-                        <button onClick={(e) => handleSubmit(e)} className="btn">Create</button>
+                        <form className="space-y-4" method="dialog">
+                            <h3 className="font-bold text-lg">New Sheet</h3>
+                                    
+                            <input 
+                                type="text" 
+                                className="input validator" 
+                                placeholder="Title"
+                                pattern={pattern.source}
+                                minLength={minLength}
+                                maxLength={maxLength}
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required 
+                            />
+                            <p className="validator-hint hidden">
+                                Must be 3 to 60 characters
+                                <br />containing only letters, numbers or dash
+                            </p>
+                            
+                            <select 
+                                className="select"
+                                value={clef}
+                                onChange={(e) => setClef(e.target.value)}
+                            >
+                                <option disabled={true}>Pick a clef</option>
+                                <option value="treble">𝄞 Treble</option>
+                                <option value="alto">𝄡 Alto</option>
+                                <option value="bass">𝄢 Bass</option>
+                            </select>
+                            <select 
+                                className="select"
+                                value={timeSignature}
+                                onChange={(e) => setTimeSignature(e.target.value)}
+                            >
+                                <option disabled={true}>Pick a time signature</option>
+                                <option value="4/4">4/4</option>
+                                <option value="3/4">3/4</option>
+                                <option value="2/4">2/4</option>
+                            </select>
+                            <div className="modal-action">
+                                <button 
+                                    type="button" 
+                                    onClick={e => dialogRef.current.close()} 
+                                    className="btn"
+                                >
+                                    Cancel
+                                </button>
+                                <button onClick={(e) => handleSubmit(e)} className="btn">Create</button>
+                                
+                            </div>
                         
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </dialog>
     )
 }
