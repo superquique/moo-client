@@ -108,7 +108,9 @@ function AddSheetForm ({onAddSheet, onCloseForm}) {
                                 >
                                     Cancel
                                 </button>
-                                <button onClick={(e) => handleSubmit(e)} className="btn">Create</button>
+                                <button onClick={(e) => handleSubmit(e)} className="btn btn-primary">
+                                    Create
+                                </button>
                                 
                             </div>
                         

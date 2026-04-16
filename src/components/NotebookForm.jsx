@@ -71,7 +71,7 @@ function NotebookForm ({onSave, onCloseForm, existingNotebook = null}) {
                                 >
                                     Cancel
                                 </button>
-                                <button onClick={e => handleSubmit(e)} className="btn">
+                                <button onClick={e => handleSubmit(e)} className="btn btn-primary">
                                     { existingNotebook ? 'Save' : 'Create'}
                                 </button>
                             </div>
