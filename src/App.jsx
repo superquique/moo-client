@@ -8,12 +8,13 @@ import SheetPage from './pages/SheetPage';
 import Navbar from './components/Navbar';
 import NotebookListPage from './pages/NotebookListPage';
 import NotebookPage from './pages/NotebookPage';
+import SheetListPage from './pages/SheetListPage';
 
 
 function App() {
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       
       <Navbar />
 
@@ -26,6 +27,11 @@ function App() {
         <Route 
           path="/login" 
           element={<IsAnon> <LoginPage /> </IsAnon>} 
+        />
+
+        <Route 
+          path="/sheets"
+          element={<IsPrivate> <SheetListPage /> </IsPrivate>}
         />
 
         <Route 
