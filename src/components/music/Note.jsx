@@ -26,12 +26,13 @@ function Note ({length, accidental, x, y, absIndex, gap}) {
     return (
         <>
             {[...Array(extraBars).keys()].map((_, i) => {
+                console.log("extraBars", extraBars);
                 return (<line
                     key={`extra-bar-${i}`}
                     x1={x - 1}
-                    y1={absIndex > 9 ? 13 * gap + i * gap : - 1 * gap - i * gap}
+                    y1={absIndex > 9 ? 13 * gap + i * gap : -1 * gap - i * gap + 40}
                     x2={x + 9}
-                    y2={absIndex > 9 ? 13 * gap + i * gap : - 1 * gap - i * gap}
+                    y2={absIndex > 9 ? 13 * gap + i * gap : -1 * gap - i * gap + 40}
                     style={{stroke: "black", strokeWidth: 1}}
                 />)
             })}
