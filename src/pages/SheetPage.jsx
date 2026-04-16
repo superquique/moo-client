@@ -9,7 +9,6 @@ import { BackspaceIcon } from '@heroicons/react/24/outline';
 
 function SheetPage ({}) {
     const [sheet, setSheet] = useState(null);
-    const [measures, setMeasures] = useState(null);
     const [staffs, setStaffs] = useState(null);
     const [selectedLength, setSelectedLength] = useState("4")
     const debouncedSheet = useDebounce(sheet, 2000);
@@ -26,11 +25,6 @@ function SheetPage ({}) {
 
     useEffect(() => {
         if (sheet !== null && sheet.notes) {
-            // setMeasures(divideMesaures(sheet.notes.split(" "), 
-            //     parseInt(sheet.timeSignature.split("/")[0]), 
-            //     parseInt(sheet.timeSignature.split("/")[1]))
-            // );
-
             setStaffs(divideStaffs(
                 sheet.notes.split(" "),
                 measuresPerStaff,
@@ -39,7 +33,7 @@ function SheetPage ({}) {
             ));
 
         } else {
-            setMeasures([]);
+            setStaffs([]);
         }
         
     }, [sheet])
