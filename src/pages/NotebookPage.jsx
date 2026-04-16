@@ -52,7 +52,7 @@ function NotebookPage () {
 
     return (
         
-        <div>
+        <div className="pt-1">
             { isFormOpen && <AddSheetForm onAddSheet={addSheet} onCloseForm={closeForm} /> }
             <ul className="list bg-base-100 rounded-box shadow-md">
   

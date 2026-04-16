@@ -60,7 +60,7 @@ function NotebookListPage () {
 
     return (
         
-        <div>
+        <div className="pt-1">
             { isFormOpen && 
                 <NotebookForm 
                     key={editingNotebook?._id || "new"}
@@ -80,13 +80,16 @@ function NotebookListPage () {
 
             <ul className="list bg-base-100 rounded-box shadow-md">
   
-                <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
+                <li className="flex justify-betweeen items-center p-4 pb-2 text-xs opacity-60 tracking-wide">
                     Notebooks
 
                     <button onClick={openForm} className="btn btn-square btn-ghost">
                         <FolderPlusIcon className="size-6 text-black-500" />
-                        {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg> */}
                     </button>
+
+                    <input type="text" placeholder="Search" className="input input-bordered w-64 lg:w-auto" />
+                    
+                    <div></div>
                 </li>
 
                 {!notebooks && 

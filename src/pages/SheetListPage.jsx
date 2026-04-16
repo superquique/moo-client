@@ -59,7 +59,7 @@ function SheetListPage () {
 
     return (
         
-        <div>
+        <div className="pt-1">
             { isFormOpen && <AddSheetForm onAddSheet={addSheet} onCloseForm={closeForm} /> }
             <ul className="list bg-base-100 rounded-box shadow-md">
   
@@ -85,7 +85,10 @@ function SheetListPage () {
                                 <div>{sheet.title}</div>
                             </Link>
                             <Link key={sheet.notebook?._id} to={`/notebooks/${sheet.notebook?._id}`}>
-                                <div className="text-xs uppercase font-semibold opacity-60">
+                                <div className="flex items-center gap-2 text-xs uppercase font-semibold opacity-60">
+                                    {sheet.notebook && 
+                                        <FolderIcon className="size-4 text-black-500" />
+                                    }
                                     {sheet.notebook?.name}
                                 </div>
                             </Link>
