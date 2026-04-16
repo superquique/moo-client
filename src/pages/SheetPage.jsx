@@ -5,12 +5,13 @@ import Staff from '../components/music/Staff';
 import sheetsService from '../services/sheets.service';
 import useDebounce from "../hooks/useDebounce";
 import { divideMesaures, divideStaffs } from '../decoding/mooParser';
-import { BackspaceIcon } from '@heroicons/react/24/outline';
+import { BackspaceIcon, ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 function SheetPage ({}) {
     const [sheet, setSheet] = useState(null);
     const [staffs, setStaffs] = useState(null);
     const [selectedLength, setSelectedLength] = useState("4")
+    const [selectedOctave, setSelectedOctave] = useState(0);
     const debouncedSheet = useDebounce(sheet, 2000);
     const { id } = useParams();
 
@@ -69,11 +70,34 @@ function SheetPage ({}) {
     }
 
     const onSelectLength = (e) => {
+        console.log("onSelectLength", e.target.value);
         setSelectedLength(e.target.value);
     }
 
+    const onSelectOctave = (octaveDiff) => {
+        if (selectedOctave + octaveDiff < -2) {
+            return;
+        }
+
+        if (selectedOctave + octaveDiff > 2) {
+            return;
+        }
+
+        setSelectedOctave(selectedOctave + octaveDiff);
+    }
+
     const addNote = (e) => {
-        const newNote = `${e.target.value}${selectedLength}`;
+        let octave = "";
+        if (selectedOctave < 0) {
+           octave = ",".repeat(Math.abs(selectedOctave));
+        } else if (selectedOctave > 0) {
+            octave = "'".repeat(selectedOctave);
+        }
+
+        const newNote = `${e.target.value}${selectedLength}${octave}`;
+
+        console.log("newNote", newNote);
+
         const notes = sheet.notes + ` ${newNote}`;
         onChange(notes.trim(), "notes");
     }
@@ -96,6 +120,8 @@ function SheetPage ({}) {
         )
     }
 
+    console.log("selectedOctave", selectedOctave);
+
     return (
         <>
             <section className="pt-10" id="center">
@@ -108,68 +134,106 @@ function SheetPage ({}) {
                     onChange={(e) => onChange(e.target.value, "title")}
                 />
 
-                <div className="flex pt-10 items-start justify-center">
-                    <label className="input">
-                        <span className="label text-4xl">𝅗</span>
-                        <input type="radio" name="radio-length" value="" onChange={onSelectLength}
-                            checked={selectedLength === ''} className="radio" />
-                    </label>
-
-                    <label className="input">
-                        <span className="label text-4xl">𝅗𝅥</span>
-                        <input type="radio" name="radio-length" value="2" onChange={onSelectLength}
-                            checked={selectedLength === '2'} className="radio" />
-                    </label>
-
-                    <label className="input">
-                        <span className="label text-4xl">𝅘𝅥</span>
-                        <input type="radio" name="radio-length" value="4" onChange={onSelectLength}
-                            checked={selectedLength === '4'}
-                            className="radio" />
-                    </label>
-
-                    <label className="input">
-                        <span className="label text-4xl">𝅘𝅥𝅮</span>
-                        <input type="radio" name="radio-length" value="8" onChange={onSelectLength}
-                            checked={selectedLength === '8'}
-                            className="radio" />
-                    </label>
-
-                    <label className="input">
-                        <span className="label text-4xl">𝅘𝅥𝅯</span>
-                        <input type="radio" name="radio-length" value="16" onChange={onSelectLength}
-                            checked={selectedLength === '16'}
-                            className="radio" />
-                    </label>
-
+                <div className="flex items-start justify-center">
+                    {/* Placeholder for upper menu */}
                 </div>
 
-                <div className="flex pt-10 items-start justify-center">
-                    <button value="a" onClick={addNote} className="btn btn-circle">
-                        A
+                <div className="fab fab-flower">
+                    {/* a focusable div with tabIndex is necessary to work on all browsers. role="button" is necessary for accessibility */}
+                    <div tabIndex={0} role="button" className="btn btn-circle text-2xl btn-primary">
+                        {selectedLength === '' && '𝅗'}
+                        {selectedLength === '2' && '𝅗𝅥'}
+                        {selectedLength === '4' && '𝅘𝅥'}
+                        {selectedLength === '8' && '𝅘𝅥𝅮'}
+                        {selectedLength === '16' && '𝅘𝅥𝅯'}
+                    </div>
+
+                    {/* Main Action button replaces the original button when FAB is open */}
+                    <button className="fab-main-action btn btn-circle">
+                        <PencilIcon className="size-5 text-black-500" />
                     </button>
-                    <button value="b" onClick={addNote} className="btn btn-circle">
-                        B
+
+                    {/* buttons that show up when FAB is open */}
+                    <button 
+                        className={`btn text-2xl btn-circle ${selectedLength === '' ? 'btn-primary': ''}`} 
+                        value="" onClick={onSelectLength}>
+                        𝅗
                     </button>
-                    <button value="c" onClick={addNote} className="btn btn-circle">
-                        C
+                    <button 
+                        className={`btn text-2xl btn-circle ${selectedLength === '2' ? 'btn-primary': ''}`}
+                        value="2" onClick={onSelectLength}>
+                        𝅗𝅥
                     </button>
-                    <button value="d" onClick={addNote} className="btn btn-circle">
-                        D
+                    <button 
+                        className={`btn text-2xl btn-circle ${selectedLength === '4' ? 'btn-primary': ''}`}
+                        value="4" onClick={onSelectLength}>
+                        𝅘𝅥
                     </button>
-                    <button value="e" onClick={addNote} className="btn btn-circle">
-                        E
+                    <button 
+                        className={`btn text-2xl btn-circle ${selectedLength === '8' ? 'btn-primary': ''}`}
+                        value="8" onClick={onSelectLength}>
+                        𝅘𝅥𝅮
                     </button>
-                    <button value="f" onClick={addNote} className="btn btn-circle">
-                        F
+                    <button 
+                        className={`btn text-2xl btn-circle ${selectedLength === '16' ? 'btn-primary': ''}`} 
+                        value="16" onClick={onSelectLength}>
+                        𝅘𝅥𝅯
                     </button>
-                    <button value="g" onClick={addNote} className="btn btn-circle">
-                        G
-                    </button>
-                    <button onClick={deleteNote} className="btn btn-circle">
-                        <BackspaceIcon className="size-5 text-black-500" />
-                    </button>
+
+                    {/* Buttons to show in the outer circle */}
+                    <div className="fab-flower-outer">
+                        <button value="a" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            A
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                        <button value="b" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            B
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                        <button value="c" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            C
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                        <button value="d" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            D
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                        <button value="e" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            E
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                        <button value="f" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            F
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                        <button value="g" onClick={addNote} className="btn btn-circle">
+                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                            G
+                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                        </button>
+                    </div>
+
+                    {/* Buttons to show in the inner circle */}
+                    <div className="fab-flower-inner">
+                        <button onClick={() => onSelectOctave(-1)} className="btn btn-circle">
+                            <ChevronDownIcon className="size-5 text-black-500" />
+                        </button>
+                        <button onClick={() => onSelectOctave(1)} className="btn btn-circle">
+                            <ChevronUpIcon className="size-5 text-black-500" />
+                        </button>
+                        <button onClick={deleteNote} className="btn btn-circle">
+                            <BackspaceIcon className="size-5 text-black-500" />
+                        </button>
+                        
+                    </div>
                 </div>
+
 
                 <svg height="200vh" width="80%" overflow="visible" xmlns="http://www.w3.org/2000/svg">
                     {/* <Staff notes={["a,", "a#2,", "b4,", "c8", "c#16", "d4", "d#4", "e4", "f4", "f#4",
