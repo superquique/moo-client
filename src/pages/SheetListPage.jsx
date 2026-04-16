@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import notebooksService from '../services/notebooks.service';
 import { Link } from "react-router-dom";
-import { DocumentPlusIcon, FolderIcon, FolderPlusIcon, MusicalNoteIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { DocumentPlusIcon, FolderIcon, FolderPlusIcon, HeartIcon, MusicalNoteIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import NotebookForm from "../components/NotebookForm";
 import sheetsService from "../services/sheets.service";
 import AddSheetForm from "../components/AddSheetForm";
@@ -45,6 +46,14 @@ function SheetListPage () {
         sheetsService.deleteSheet(id)
         .then((response) => getSheets())
         .catch((error) => console.log(error))
+    }
+
+    const toggleFavorite = (id, isFavorite) => {
+        sheetsService.updateSheet(id, {isFavorite: !isFavorite})
+        .then((response) => {
+            getSheets();
+        })
+        .catch((error) => console.log(error));
     }
 
     const openForm = () => setIsFormOpen(true);
@@ -93,8 +102,12 @@ function SheetListPage () {
                                 </div>
                             </Link>
                         </div>
-                        <button className="btn btn-square btn-ghost">
-                            <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
+                        <button onClick={() => toggleFavorite(sheet._id, sheet.isFavorite)} className="btn btn-square btn-ghost">
+                            {sheet.isFavorite ? 
+                                <HeartIconSolid className="size-5 text-secondary" />
+                                :
+                                <HeartIcon className="size-5 text-black-500" />
+                            }
                         </button>
                         <button className="btn btn-square btn-ghost" onClick={(e) => deleteSheet(sheet._id)}>
                             <TrashIcon className="size-5 text-black-500" />
