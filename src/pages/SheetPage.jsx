@@ -130,14 +130,14 @@ function SheetPage ({}) {
         <>
             <section className="flex flex-col justify-center items-center">
                 <Toaster />
-                <div className="sticky top-16 z-100 bg-base-100 shadow-sm flex justify-between items-center w-full p-4 pb-2 tracking-wide">
+                <div className="sticky top-16 z-100 bg-base-100 shadow-sm flex justify-between items-center w-full p-4 tracking-wide">
                     
                     <div></div>
 
                     <input 
                         type="text" 
                         placeholder="Title" 
-                        className="input input-sm input-ghost w-128 text-xl font-bold text-center"
+                        className="input input-sm input-ghost w-128 text-lg font-bold text-center"
                         value={sheet.title}
                         onChange={(e) => onChange(e.target.value, "title")}
                     />
