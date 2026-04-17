@@ -17,14 +17,18 @@ function Navbar () {
                         <label htmlFor="navbar-1-toggle" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <div className="avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://i.pinimg.com/736x/e6/f6/2c/e6f62cc58c729184d27665dbf71170bb.jpg" />
+                        <NavLink to="/">
+                            <div className="avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src="https://i.pinimg.com/736x/e6/f6/2c/e6f62cc58c729184d27665dbf71170bb.jpg" />
+                                </div>
                             </div>
-                        </div>
-                        <button className="btn btn-ghost text-xl">
-                            Moo Music Notebook
-                        </button>
+                        </NavLink>
+                        <NavLink to="/">
+                            <button className="btn btn-ghost text-xl">
+                                Moo Music Notebook
+                            </button>
+                        </NavLink>
                         <div className="hidden lg:flex">
                             
                         </div>
