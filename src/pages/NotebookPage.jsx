@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import notebooksService from '../services/notebooks.service';
 import sheetsService from "../services/sheets.service";
 import { Link, useParams } from "react-router-dom";
-import { DocumentPlusIcon, FolderIcon, FolderPlusIcon, HeartIcon, MusicalNoteIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { DocumentPlusIcon, HeartIcon, MusicalNoteIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import AddSheetForm from "../components/AddSheetForm";
 

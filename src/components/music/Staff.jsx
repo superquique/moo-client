@@ -1,8 +1,6 @@
-import React from 'react';
 import Note from "./Note";
 import Clef from "./Clef";
 import TimeSignature from "./TimeSignature";
-import { decodeNote } from "../../decoding/mooParser";
 import Barline from "./Barline";
 
 function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {

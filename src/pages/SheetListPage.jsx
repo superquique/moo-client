@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import notebooksService from '../services/notebooks.service';
 import { Link } from "react-router-dom";
 import { DocumentPlusIcon, FolderIcon, HeartIcon, MusicalNoteIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
