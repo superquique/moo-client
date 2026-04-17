@@ -26,6 +26,12 @@ function NotebookPage () {
         .catch((error) => console.log(error));
     }
 
+    const searchByTitle = (title) => {
+        sheetsService.getAllSheetsFromNotebookWithTitle(id, title)
+        .then((response) => setSheets(response.data))
+        .catch((error) => console.log(error));
+    }
+
     const addSheet = (payload) => {
         payload.notebook = id; 
         
@@ -63,15 +69,23 @@ function NotebookPage () {
         <div className="pt-1">
             { isFormOpen && <AddSheetForm onAddSheet={addSheet} onCloseForm={closeForm} /> }
             <ul className="list bg-base-100 rounded-box shadow-md">
-  
-                <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-                    
-                    Notebooks / {notebook && notebook.name}
 
-                    <button onClick={openForm} className="btn btn-square btn-ghost">
-                        <DocumentPlusIcon className="size-6 text-black-500" />
-                        {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg> */}
-                    </button>
+                <li className="sticky top-16 z-100 bg-base-100  shadow-sm flex justify-between items-center p-4 pb-2 text-xs tracking-wide">
+                    <div className="flex items-center gap-2">
+                        Notebooks / {notebook && notebook.name}
+                        <button onClick={openForm} className="btn btn-square btn-ghost">
+                            <DocumentPlusIcon className="size-6 text-black-500" />
+                        </button>
+                    </div>
+
+                    <div className="flex gap-2 items-center">
+                        <input 
+                            type="text" 
+                            placeholder="Search"
+                            className="input input-bordered w-64 lg:w-128"
+                            onChange={e => searchByTitle(e.target.value)} 
+                        />
+                    </div>
                 </li>
                 
                 {sheets && sheets.map((sheet) => (

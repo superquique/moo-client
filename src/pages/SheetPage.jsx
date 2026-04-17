@@ -5,7 +5,8 @@ import Staff from '../components/music/Staff';
 import sheetsService from '../services/sheets.service';
 import useDebounce from "../hooks/useDebounce";
 import { divideMesaures, divideStaffs } from '../decoding/mooParser';
-import { BackspaceIcon, ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon, PencilIcon } from '@heroicons/react/24/outline';
+import { BackspaceIcon, ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon, HeartIcon, PencilIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 
 function SheetPage ({}) {
     const [sheet, setSheet] = useState(null);
@@ -69,6 +70,14 @@ function SheetPage ({}) {
         setSheet(newSheet);
     }
 
+    const toggleFavorite = (id, isFavorite) => {
+        sheetsService.updateSheet(id, {isFavorite: !isFavorite})
+        .then((response) => {
+            getSheets();
+        })
+        .catch((error) => console.log(error));
+    }
+
     const onSelectLength = (e) => {
         console.log("onSelectLength", e.target.value);
         setSelectedLength(e.target.value);
@@ -120,22 +129,30 @@ function SheetPage ({}) {
         )
     }
 
-    console.log("selectedOctave", selectedOctave);
 
     return (
         <>
-            <section className="pt-10" id="center">
+            <section className="pt-1" id="center">
                 <Toaster />
-                <input 
-                    type="text" 
-                    placeholder="Title" 
-                    className="input"
-                    value={sheet.title}
-                    onChange={(e) => onChange(e.target.value, "title")}
-                />
+                <div className="sticky top-16 z-100 bg-base-100 shadow-sm flex justify-between items-center w-full p-4 pb-2 text-xs tracking-wide">
+                    
+                    <div></div>
 
-                <div className="flex items-start justify-center">
-                    {/* Placeholder for upper menu */}
+                    <input 
+                        type="text" 
+                        placeholder="Title" 
+                        className="input input-sm input-ghost w-128 text-lg text-center"
+                        value={sheet.title}
+                        onChange={(e) => onChange(e.target.value, "title")}
+                    />
+
+                    <button onClick={() => toggleFavorite(sheet._id, sheet.isFavorite)} className="btn btn-square btn-ghost">
+                        {sheet.isFavorite ? 
+                            <HeartIconSolid className="size-8 text-secondary" />
+                            :
+                            <HeartIcon className="size-8 text-black-500" />
+                        }
+                    </button>
                 </div>
 
                 <div className="fab fab-flower">

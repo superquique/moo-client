@@ -43,6 +43,11 @@ class SheetsService {
     return this.api.get(`/api/sheets/notebook/${notebookId}`);
   };
 
+  // GET /api/sheets
+  getAllSheetsFromNotebookWithTitle = (notebookId, title) => {
+    return this.api.get(`/api/sheets/notebook/${notebookId}?title=${title}`);
+  };
+
   // GET /api/sheets/:id
   getSheet = id => {
     return this.api.get(`/api/sheets/${id}`);
