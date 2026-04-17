@@ -29,6 +29,11 @@ class SheetsService {
     return this.api.get('/api/sheets');
   };
 
+  // GET /api/sheets?favorite=true
+  getFavoriteSheets = () => {
+    return this.api.get('/api/sheets?favorite=true');
+  }
+
   // GET /api/sheets
   getAllSheetsFromNotebook = (notebookId) => {
     return this.api.get(`/api/sheets/notebook/${notebookId}`);
