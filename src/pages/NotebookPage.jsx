@@ -72,7 +72,8 @@ function NotebookPage () {
 
                 <li className="sticky top-16 z-100 bg-base-100  shadow-sm flex justify-between items-center p-4 pb-2 text-xs tracking-wide">
                     <div className="flex items-center gap-2">
-                        Notebooks / {notebook && notebook.name}
+                        <Link to={`/notebooks`}>Notebooks / {notebook && notebook.name}</Link>
+                        
                         <button onClick={openForm} className="btn btn-square btn-ghost">
                             <DocumentPlusIcon className="size-6 text-black-500" />
                         </button>
@@ -96,7 +97,7 @@ function NotebookPage () {
                             {/* <img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/> */}
                         </div>
                         <div>
-                            <Link key={sheet._id} to={`/sheets/${sheet._id}`}>
+                            <Link to={`/sheets/${sheet._id}`}>
                                 <div>{sheet.title}</div>
                                 <div className="text-xs uppercase font-semibold opacity-60"></div>
                             </Link>
