@@ -29,6 +29,11 @@ class NotebooksService {
     return this.api.get('/api/notebooks');
   };
 
+  // GET /api/notebooks?favorite=true
+  getFavoriteNotebooks = () => {
+    return this.api.get('/api/notebooks?favorite=true');
+  }
+
   // GET /api/notebooks/:id
   getNotebook = id => {
     return this.api.get(`/api/notebooks/${id}`);
