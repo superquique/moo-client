@@ -98,7 +98,7 @@ function NotebookListPage () {
                 <li className="sticky top-16 z-100 bg-base-100 shadow-sm flex justify-between items-center p-4 pb-2 text-xs tracking-wide">
                     <div className="flex items-center gap-2">
                         Notebooks
-                        <button onClick={openForm} className="btn btn-square btn-ghost">
+                        <button onClick={openForm} className="btn btn-square btn-primary">
                             <FolderPlusIcon className="size-6 text-black-500" />
                         </button>
                     </div>
@@ -116,6 +116,18 @@ function NotebookListPage () {
                 {!notebooks && 
                     <div className="flex p-5 items-center justify-center">
                         <span className="loading loading-spinner loading-xl"></span>
+                    </div>
+                }
+
+                {notebooks && notebooks.length === 0 &&
+                    <div className="flex flex-col w-screen p-5 gap-4 items-center justify-center">
+                        <h2 className="card-title text-center">
+                            You haven't added any notebooks yet! <br />
+                            Tap the button to add some.
+                        </h2>
+                        <button onClick={openForm} className="btn btn-primary btn-xl btn-square">
+                            <FolderPlusIcon className="size-8 text-black-500" />
+                        </button>
                     </div>
                 }
                 
