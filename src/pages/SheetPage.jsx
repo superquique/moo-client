@@ -79,7 +79,6 @@ function SheetPage ({}) {
     }
 
     const onSelectLength = (e) => {
-        console.log("onSelectLength", e.target.value);
         setSelectedLength(e.target.value);
     }
 
@@ -104,8 +103,6 @@ function SheetPage ({}) {
         }
 
         const newNote = `${e.target.value}${selectedLength}${octave}`;
-
-        console.log("newNote", newNote);
 
         const notes = sheet.notes + ` ${newNote}`;
         onChange(notes.trim(), "notes");

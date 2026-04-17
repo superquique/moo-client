@@ -57,19 +57,30 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
             { showTimeSignature && <TimeSignature bpm={bpm} noteValue={noteValue} x={hGap} y1={4 * gap/2 + 40} y2={8 * gap/2 + 40} />}
             
             {measures && measures.map((measure, i) => {
-                let currentX = 20;
+                let currentX = hGap/2;
+                if (showTimeSignature && i === 0) {
+                    currentX += hGap * 1.2;
+                }
+
                 return <svg key={`measure-${i}`} x={`${i * 25}%`} y="0" width="25%" 
                 overflow="visible">
                     <rect x="0" y="0" width="100%" height="100%" fill="yellow" fillOpacity="0.3" />
 
-                    {measure.map((note, i) => {
-                        const xPos = currentX;
+                    {measure.map((note, j) => {
+                        let xPos = currentX;
+                        
+                        let noteLength = note.length || 1;
+                        
+                        let multiplier = bpm/noteLength;
 
-                        let multiplier = bpm/note.length;
+                        if (showTimeSignature && i === 0) {
+                            multiplier *= 0.9;
+                        }
+
                         currentX += (multiplier * hGap);
 
                         return <Note 
-                            key={`note-${i}`}
+                            key={`note-${j}`}
                             length={note.length}
                             accidental={note.accidental}
                             x={xPos}

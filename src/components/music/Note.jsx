@@ -26,7 +26,6 @@ function Note ({length, accidental, x, y, absIndex, gap}) {
     return (
         <>
             {[...Array(extraBars).keys()].map((_, i) => {
-                console.log("extraBars", extraBars);
                 return (<line
                     key={`extra-bar-${i}`}
                     x1={x - 1}
