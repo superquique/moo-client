@@ -7,7 +7,7 @@ function Clef ({clef, x, y}) {
 
     return (
         <>
-            <text x={x} y={y} fill="black" fontSize="45">
+            <text x={x} y={y} fill="black" fontSize="20">
                 {clefs[clef]}
             </text>
         </>        

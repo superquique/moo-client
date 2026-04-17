@@ -7,7 +7,7 @@ function Barline ({barline, x, y}) {
 
     return (
         <>
-            <text x={x} y={y} fill="black" fontSize="30">
+            <text x={x} y={y} fill="black" fontSize="20">
                 {barlines[barline]}
             </text>
         </>        

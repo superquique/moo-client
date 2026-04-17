@@ -101,7 +101,7 @@ function SheetListPage () {
                     <li key={sheet._id} className="list-row">
                         <div className="flex items-center justify-center gap-1">
                             {/* <MusicalNoteIcon className="size-6 text-black-500" /> */}
-                            <div className="text-6xl flex leading-none items-center justify-center">
+                            <div className="text-2xl flex leading-none items-center justify-center">
                                 {sheet.clef === "treble" && "𝄞"}
                             </div>
                             <div className="flex flex-col leading-none text-lg">

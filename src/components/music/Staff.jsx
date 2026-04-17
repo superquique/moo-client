@@ -51,8 +51,8 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
                 />
             ))}
 
-            { clef && <Clef clef={clef} x="0" y="65" />}
-            { showTimeSignature && <TimeSignature bpm={bpm} noteValue={noteValue} x={hGap} y1={4 * gap/2 + 40} y2={8 * gap/2 + 40} />}
+            { clef && <Clef clef={clef} x="0" y="60" />}
+            { showTimeSignature && <TimeSignature bpm={bpm} noteValue={noteValue} x={hGap} />}
             
             {measures && measures.map((measure, i) => {
                 let currentX = hGap/2;
@@ -88,7 +88,7 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
                         />
                     })}
 
-                    <Barline barline="single" x="97" y={60}/>
+                    <Barline barline="single" x="99" y={60}/>
                 </svg>
 º           })}
         
