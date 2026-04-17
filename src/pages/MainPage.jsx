@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import sheetsService from "../services/sheets.service";
-import { ChevronRightIcon, DocumentPlusIcon, FolderIcon, MusicalNoteIcon } from "@heroicons/react/24/outline";
+import { ChevronRightIcon, FolderIcon, MusicalNoteIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
-import AddSheetForm from "../components/AddSheetForm";
 import notebooksService from "../services/notebooks.service";
 
 
@@ -46,6 +45,11 @@ function MainPage () {
                     </Link>
                 </div>
                 <div className="carousel rounded-box">
+                    {!sheets && 
+                        <div className="flex pt-10 h-screen items-start justify-center">
+                            <span className="loading loading-spinner loading-xl"></span>
+                        </div>
+                    }
                     {sheets && sheets.map((sheet, i) => (
                         <div key={`carousel-item-${i}`} className="carousel-item p-2">
                             <div className="card bg-base-100 w-60 card-sm shadow-sm">
@@ -93,6 +97,11 @@ function MainPage () {
                     </Link>
                 </div>
                 <div className="carousel rounded-box">
+                    {!notebooks && 
+                        <div className="flex pt-10 h-screen items-start justify-center">
+                            <span className="loading loading-spinner loading-xl"></span>
+                        </div>
+                    }
                     {notebooks && notebooks.map((notebook, i) => (
                         <div key={`carousel-item-${i}`} className="carousel-item p-2">
                             <div className="card bg-base-100 w-60 card-md shadow-sm">

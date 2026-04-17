@@ -88,6 +88,12 @@ function NotebookPage () {
                         />
                     </div>
                 </li>
+
+                {!sheets && 
+                    <div className="flex pt-10 h-screen items-start justify-center">
+                        <span className="loading loading-spinner loading-xl"></span>
+                    </div>
+                }
                 
                 {sheets && sheets.map((sheet) => (
                     
