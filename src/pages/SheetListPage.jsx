@@ -57,11 +57,11 @@ function SheetListPage () {
 
     return (
         
-        <div className="pt-1">
+        <div>
             { isFormOpen && <AddSheetForm onAddSheet={addSheet} onCloseForm={closeForm} /> }
             <ul className="list bg-base-100 rounded-box shadow-md">
   
-                <li className="flex justify-between p-4 pb-2 text-xs opacity-60 tracking-wide">
+                <li className="sticky top-16 z-100 bg-base-100  shadow-sm flex justify-between items-center p-4 pb-2 text-xs tracking-wide">
                     <div className="flex items-center gap-2">
                         Sheets
                         <button onClick={openForm} className="btn btn-square btn-ghost">
