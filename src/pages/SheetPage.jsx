@@ -126,7 +126,6 @@ function SheetPage ({}) {
         )
     }
 
-
     return (
         <>
             <section className="flex flex-col justify-center items-center">
@@ -255,7 +254,7 @@ function SheetPage ({}) {
                     "e4", "eb4", "d4", "db4", "c4"
                     ]} /> */}
 
-                    <rect width="100%" height="100%" fill="red" fillOpacity="0.3" />
+                    {/* <rect width="100%" height="100%" fill="red" fillOpacity="0.3" /> */}
                     
                     { staffs && 
                         <Staff 

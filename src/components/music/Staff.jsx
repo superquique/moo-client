@@ -40,7 +40,7 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
     
     return (
         <svg x="0" y={y} width="100%" height="20%" viewBox="0 0 400 100" overflow="visible">
-            <rect width="100%" height="100%" fill="blue" fillOpacity="0.3" />
+            {/* <rect width="100%" height="100%" fill="blue" fillOpacity="0.3" /> */}
 
             {lines.map((i) => (
                 <line
@@ -64,7 +64,7 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
 
                 return <svg key={`measure-${i}`} x={`${i * 25}%`} y="0" width="25%" 
                 overflow="visible">
-                    <rect x="0" y="0" width="100%" height="100%" fill="yellow" fillOpacity="0.3" />
+                    {/* <rect x="0" y="0" width="100%" height="100%" fill="yellow" fillOpacity="0.3" /> */}
 
                     {measure.map((note, j) => {
                         let xPos = currentX;
