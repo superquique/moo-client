@@ -87,8 +87,8 @@ function AddSheetForm ({onAddSheet, onCloseForm}) {
                             >
                                 <option disabled={true}>Pick a clef</option>
                                 <option value="treble">𝄞 Treble</option>
-                                <option value="alto">𝄡 Alto</option>
-                                <option value="bass">𝄢 Bass</option>
+                                {/* <option value="alto">𝄡 Alto</option>
+                                <option value="bass">𝄢 Bass</option> */}
                             </select>
                             <select 
                                 className="select"
