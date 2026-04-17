@@ -114,7 +114,7 @@ function NotebookListPage () {
                 </li>
 
                 {!notebooks && 
-                    <div className="flex pt-10 items-center justify-center">
+                    <div className="flex p-5 items-center justify-center">
                         <span className="loading loading-spinner loading-xl"></span>
                     </div>
                 }
@@ -122,14 +122,12 @@ function NotebookListPage () {
                 {notebooks && notebooks.map((notebook) => (
                     
                     <li key={notebook._id} className="list-row">
-                        <div>
+                        <div className="flex items-center">
                             <FolderIcon className="size-6 text-black-500" />
-                            {/* <img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/> */}
                         </div>
-                        <div>
+                        <div className="flex items-center">
                             <Link key={notebook._id} to={`/notebooks/${notebook._id}`}>
                                 <div>{notebook.name}</div>
-                                <div className="text-xs uppercase font-semibold opacity-60"></div>
                             </Link>
                         </div>
                         <button onClick={() => toggleFavorite(notebook._id, notebook.isFavorite)} className="btn btn-square btn-ghost">

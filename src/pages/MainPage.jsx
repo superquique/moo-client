@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import sheetsService from "../services/sheets.service";
-import { ChevronRightIcon, FolderIcon, MusicalNoteIcon } from "@heroicons/react/24/outline";
+import { ChevronRightIcon, FolderIcon, HeartIcon, MusicalNoteIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import notebooksService from "../services/notebooks.service";
@@ -46,10 +46,21 @@ function MainPage () {
                 </div>
                 <div className="carousel rounded-box">
                     {!sheets && 
-                        <div className="flex pt-10 items-center justify-center">
+                        <div className="flex w-screen p-5 items-center justify-center">
                             <span className="loading loading-spinner loading-xl"></span>
                         </div>
                     }
+
+                    {sheets && sheets.length === 0 &&
+                        <div className="flex flex-col w-screen p-5 gap-1 items-center justify-center">
+                            <h2 className="card-title text-center">
+                                You haven't added any favorite sheets yet! <br />
+                                Tap the heart to add some
+                            </h2>
+                            <HeartIcon className="size-5 text-black-500" />
+                        </div>
+                    }
+
                     {sheets && sheets.map((sheet, i) => (
                         <div key={`carousel-item-${i}`} className="carousel-item p-2">
                             <div className="card bg-base-100 w-60 card-sm shadow-sm">
@@ -98,10 +109,21 @@ function MainPage () {
                 </div>
                 <div className="carousel rounded-box">
                     {!notebooks && 
-                        <div className="flex pt-10 items-center justify-center">
+                        <div className="flex w-screen p-5 items-center justify-center">
                             <span className="loading loading-spinner loading-xl"></span>
                         </div>
                     }
+
+                    {notebooks && notebooks.length === 0 &&
+                        <div className="flex flex-col w-screen p-5 gap-1 items-center justify-center">
+                            <h2 className="card-title text-center">
+                                You haven't added any favorite notebooks yet! <br />
+                                Tap the heart to add some
+                            </h2>
+                            <HeartIcon className="size-5 text-black-500" />
+                        </div>
+                    }
+
                     {notebooks && notebooks.map((notebook, i) => (
                         <div key={`carousel-item-${i}`} className="carousel-item p-2">
                             <div className="card bg-base-100 w-60 card-md shadow-sm">

@@ -72,7 +72,7 @@ function NotebookPage () {
 
                 <li className="sticky top-16 z-100 bg-base-100  shadow-sm flex justify-between items-center p-4 pb-2 text-xs tracking-wide">
                     <div className="flex items-center gap-2">
-                        <Link to={`/notebooks`}>Notebooks / {notebook && notebook.name}</Link>
+                        <Link to={`/notebooks`}>Notebooks </Link> /  {notebook && notebook.name}
                         
                         <button onClick={openForm} className="btn btn-square btn-ghost">
                             <DocumentPlusIcon className="size-6 text-black-500" />
@@ -90,7 +90,7 @@ function NotebookPage () {
                 </li>
 
                 {!sheets && 
-                    <div className="flex pt-10 items-center justify-center">
+                    <div className="flex p-5 items-center justify-center">
                         <span className="loading loading-spinner loading-xl"></span>
                     </div>
                 }
@@ -98,11 +98,11 @@ function NotebookPage () {
                 {sheets && sheets.map((sheet) => (
                     
                     <li key={sheet._id} className="list-row">
-                        <div>
+                        <div className="flex items-center">
                             <MusicalNoteIcon className="size-6 text-black-500" />
                             {/* <img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/> */}
                         </div>
-                        <div>
+                        <div className="flex items-center">
                             <Link to={`/sheets/${sheet._id}`}>
                                 <div>{sheet.title}</div>
                                 <div className="text-xs uppercase font-semibold opacity-60"></div>
