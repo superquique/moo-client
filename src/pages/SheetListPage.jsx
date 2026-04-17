@@ -99,34 +99,45 @@ function SheetListPage () {
                 {sheets && sheets.map((sheet) => (
                     
                     <li key={sheet._id} className="list-row">
-                        <div>
-                            <MusicalNoteIcon className="size-6 text-black-500" />
-                            {/* <img className="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/> */}
+                        <div className="flex items-center justify-center gap-1">
+                            {/* <MusicalNoteIcon className="size-6 text-black-500" /> */}
+                            <div className="text-6xl flex leading-none items-center justify-center">
+                                {sheet.clef === "treble" && "𝄞"}
+                            </div>
+                            <div className="flex flex-col leading-none text-lg">
+                                <p className="align-text-bottom"> {sheet.timeSignature.split("/")[0]}</p>
+                                <p className="align-text-top"> {sheet.timeSignature.split("/")[1]}</p>
+                            </div>
                         </div>
-                        <div>
-                            <Link key={sheet._id} to={`/sheets/${sheet._id}`}>
-                                <div>{sheet.title}</div>
-                            </Link>
-                            <Link key={sheet.notebook?._id} to={`/notebooks/${sheet.notebook?._id}`}>
-                                <div className="flex items-center gap-2 text-xs uppercase font-semibold opacity-60">
-                                    {sheet.notebook && 
-                                        <FolderIcon className="size-4 text-black-500" />
-                                    }
-                                    {sheet.notebook?.name}
-                                </div>
-                            </Link>
+                        <div className="flex items-center gap-10">
+                            <div>
+                                <Link key={sheet._id} to={`/sheets/${sheet._id}`}>
+                                    <div className="text-base">{sheet.title}</div>
+                                </Link>
+                                <Link key={sheet.notebook?._id} to={`/notebooks/${sheet.notebook?._id}`}>
+                                    <div className="flex items-center gap-2 text-xs uppercase font-semibold opacity-60">
+                                        {sheet.notebook && 
+                                            <FolderIcon className="size-4 text-black-500" />
+                                        }
+                                        {sheet.notebook?.name}
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
-                        <button onClick={() => toggleFavorite(sheet._id, sheet.isFavorite)} className="btn btn-square btn-ghost">
-                            {sheet.isFavorite ? 
-                                <HeartIconSolid className="size-5 text-secondary" />
-                                :
-                                <HeartIcon className="size-5 text-black-500" />
-                            }
-                        </button>
-                        <button className="btn btn-square btn-ghost" onClick={(e) => deleteSheet(sheet._id)}>
-                            <TrashIcon className="size-5 text-black-500" />
-                            {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg> */}
-                        </button>
+                        
+                        <div className="flex items-center">
+                            <button onClick={() => toggleFavorite(sheet._id, sheet.isFavorite)} className="btn btn-square btn-ghost">
+                                {sheet.isFavorite ? 
+                                    <HeartIconSolid className="size-5 text-secondary" />
+                                    :
+                                    <HeartIcon className="size-5 text-black-500" />
+                                }
+                            </button>
+                            <button className="btn btn-square btn-ghost" onClick={(e) => deleteSheet(sheet._id)}>
+                                <TrashIcon className="size-5 text-black-500" />
+                                {/* <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg> */}
+                            </button>
+                        </div>
                     </li>
 
                 ))}
