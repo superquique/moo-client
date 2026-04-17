@@ -2,20 +2,24 @@
 import { useEffect, useState } from "react";
 import notebooksService from '../services/notebooks.service';
 import { Link } from "react-router-dom";
-import { DocumentPlusIcon, FolderIcon, FolderPlusIcon, HeartIcon, MusicalNoteIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { DocumentPlusIcon, FolderIcon, HeartIcon, MusicalNoteIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
-import NotebookForm from "../components/NotebookForm";
 import sheetsService from "../services/sheets.service";
 import AddSheetForm from "../components/AddSheetForm";
 
 
 function SheetListPage () {
     const [sheets, setSheets] = useState(null);
-    const [editingSheet, setEditingSheet] = useState(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     const getSheets = () => {
         sheetsService.getAllSheets()
+        .then((response) => setSheets(response.data))
+        .catch((error) => console.log(error));
+    }
+
+    const searchByTitle = (title) => {
+        sheetsService.getSheetsWithTitle(title)
         .then((response) => setSheets(response.data))
         .catch((error) => console.log(error));
     }
@@ -25,20 +29,6 @@ function SheetListPage () {
         
         sheetsService.createSheet(payload)
         .then((response) => getSheets())
-        .catch((error) => console.log(error));
-    }
-
-    const startEdition = (sheet) => {
-        setEditingSheet(sheet);
-        openForm();
-    }
-
-    const editSheet = (name, id) => {
-        notebooksService.updateNotebook(id, {name})
-        .then((response) => {
-            setEditingNotebook(null);
-            getNotebooks();
-        })
         .catch((error) => console.log(error));
     }
 
@@ -59,7 +49,6 @@ function SheetListPage () {
     const openForm = () => setIsFormOpen(true);
     const closeForm = () => { 
         setIsFormOpen(false);
-        setEditingNotebook(null);
     };
 
     useEffect(() => {
@@ -72,13 +61,22 @@ function SheetListPage () {
             { isFormOpen && <AddSheetForm onAddSheet={addSheet} onCloseForm={closeForm} /> }
             <ul className="list bg-base-100 rounded-box shadow-md">
   
-                <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-                    
-                    Sheets
+                <li className="flex justify-between p-4 pb-2 text-xs opacity-60 tracking-wide">
+                    <div className="flex items-center gap-2">
+                        Sheets
+                        <button onClick={openForm} className="btn btn-square btn-ghost">
+                            <DocumentPlusIcon className="size-6 text-black-500" />
+                        </button>
+                    </div>
 
-                    <button onClick={openForm} className="btn btn-square btn-ghost">
-                        <DocumentPlusIcon className="size-6 text-black-500" />
-                    </button>
+                    <div className="flex gap-2 items-center">
+                        <input 
+                            type="text" 
+                            placeholder="Search"
+                            className="input input-bordered w-64 lg:w-128"
+                            onChange={e => searchByTitle(e.target.value)} 
+                        />
+                    </div>
                 </li>
                 
                 {sheets && sheets.map((sheet) => (

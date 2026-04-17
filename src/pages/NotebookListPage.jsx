@@ -17,6 +17,12 @@ function NotebookListPage () {
         .catch((error) => console.log(error));
     }
 
+    const searchByName = (name) => {
+        notebooksService.getNotebooksWithName(name)
+        .then((response) => setNotebooks(response.data))
+        .catch((error) => console.log(error));
+    }
+
     const addNotebook = (name) => {
         notebooksService.createNotebook({name})
         .then((response) => {
@@ -89,16 +95,22 @@ function NotebookListPage () {
 
             <ul className="list bg-base-100 rounded-box shadow-md">
   
-                <li className="flex justify-betweeen items-center p-4 pb-2 text-xs opacity-60 tracking-wide">
-                    Notebooks
+                <li className="flex justify-between items-center p-4 pb-2 text-xs opacity-60 tracking-wide">
+                    <div className="flex items-center gap-2">
+                        Notebooks
+                        <button onClick={openForm} className="btn btn-square btn-ghost">
+                            <FolderPlusIcon className="size-6 text-black-500" />
+                        </button>
+                    </div>
 
-                    <button onClick={openForm} className="btn btn-square btn-ghost">
-                        <FolderPlusIcon className="size-6 text-black-500" />
-                    </button>
-
-                    <input type="text" placeholder="Search" className="input input-bordered w-64 lg:w-auto" />
-                    
-                    <div></div>
+                    <div className="flex gap-2 items-center">
+                        <input 
+                            type="text" 
+                            placeholder="Search"
+                            className="input input-bordered w-64 lg:w-128"
+                            onChange={e => searchByName(e.target.value)} 
+                        />
+                    </div>
                 </li>
 
                 {!notebooks && 
