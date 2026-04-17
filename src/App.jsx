@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import NotebookListPage from './pages/NotebookListPage';
 import NotebookPage from './pages/NotebookPage';
 import SheetListPage from './pages/SheetListPage';
+import MainPage from './pages/MainPage';
 
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route 
+          path="/"
+          element={<IsPrivate> <MainPage /> </IsPrivate>}
+        />
+
         <Route 
           path="/signup" 
           element={<IsAnon> <SignupPage /> </IsAnon>} 
