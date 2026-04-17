@@ -59,6 +59,12 @@
     > :nth-child(7) {
       transition-delay: 150ms;
     }
+    > :nth-child(8) {
+      transition-delay: 180ms;
+    }
+    > :nth-child(9) {
+      transition-delay: 210ms;
+    }
     /* checkbox method experiment - not a good idea because it needs a second click to close */
     /* > label {
     @apply relative;
