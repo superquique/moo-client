@@ -90,7 +90,7 @@ function NotebookPage () {
                 </li>
 
                 {!sheets && 
-                    <div className="flex pt-10 h-screen items-start justify-center">
+                    <div className="flex pt-10 items-center justify-center">
                         <span className="loading loading-spinner loading-xl"></span>
                     </div>
                 }

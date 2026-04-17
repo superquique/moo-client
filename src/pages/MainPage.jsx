@@ -46,7 +46,7 @@ function MainPage () {
                 </div>
                 <div className="carousel rounded-box">
                     {!sheets && 
-                        <div className="flex pt-10 h-screen items-start justify-center">
+                        <div className="flex pt-10 items-center justify-center">
                             <span className="loading loading-spinner loading-xl"></span>
                         </div>
                     }
@@ -98,7 +98,7 @@ function MainPage () {
                 </div>
                 <div className="carousel rounded-box">
                     {!notebooks && 
-                        <div className="flex pt-10 h-screen items-start justify-center">
+                        <div className="flex pt-10 items-center justify-center">
                             <span className="loading loading-spinner loading-xl"></span>
                         </div>
                     }
