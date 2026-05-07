@@ -30,7 +30,8 @@ function MainPage () {
     
     return (
         <div className="pt-1">
-            <div>
+            <div className="h-1/2">
+                {/* Favorite Sheets Section */}
                 <div className="flex justify-between items-center p-4 pb-2 text-xl opacity-70 tracking-wide">     
                     <div className="flex gap-4">
                         <HeartIconSolid className="size-8 text-secondary" /> 
@@ -93,7 +94,8 @@ function MainPage () {
                     ))}
                 </div>
             </div>
-            <div className="pt-4">
+            <div className="pt-4 h-1/2">
+                {/* Favorite Notebooks Section */}
                 <div className="flex justify-between items-center p-4 pb-2 text-xl opacity-70 tracking-wide">     
                     <div className="flex gap-4">
                         <HeartIconSolid className="size-8 text-secondary" /> 
@@ -126,7 +128,7 @@ function MainPage () {
 
                     {notebooks && notebooks.map((notebook, i) => (
                         <div key={`carousel-item-${i}`} className="carousel-item p-2">
-                            <div className="card bg-base-100 w-60 card-md shadow-sm">
+                            <div className="card bg-base-100 w-60 card-sm shadow-sm">
                                 <figure className="pt-10">
                                     <Link key={notebook._id} to={`/notebooks/${notebook._id}`}>    
                                         <FolderIcon className="size-22 text-black-500" />
@@ -137,14 +139,8 @@ function MainPage () {
                                         <h2 className="card-title">{notebook.name}</h2>
                                         <p></p>
                                     </Link> 
-
-                                    <div className="card-actions">
-                                        
-                                    </div>
                                 </div>
-                                
                             </div>
-
                         </div>
                     ))}
                 </div>
