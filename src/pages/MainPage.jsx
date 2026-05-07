@@ -29,7 +29,7 @@ function MainPage () {
 
     
     return (
-        <div className="pt-1">
+        <div className="pt-1 h-full">
             <div className="h-1/2">
                 {/* Favorite Sheets Section */}
                 <div className="flex justify-between items-center p-4 pb-2 text-xl opacity-70 tracking-wide">     
