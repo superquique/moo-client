@@ -25,7 +25,7 @@
     .fab-main-action {
       @apply absolute end-0 bottom-0;
     }
-    &:focus-within {
+    &.open {
       &:has(.fab-close),
       &:has(.fab-main-action) {
         > [tabindex] {
@@ -41,7 +41,7 @@
 
       &.fab-main-action,
       &.fab-close {
-        @apply scale-100;
+        @apply scale-100 z-1000;
       }
     }
     > :nth-child(3) {
@@ -65,15 +65,7 @@
     > :nth-child(9) {
       transition-delay: 210ms;
     }
-    /* checkbox method experiment - not a good idea because it needs a second click to close */
-    /* > label {
-    @apply relative;
-    > input {
-      @apply pointer-events-none absolute inset-0 opacity-0;
-    }
-  } */
-    /* &:has(:checked), */
-    &:focus-within {
+    &.open {
       > [tabindex]:first-child {
         @apply pointer-events-none;
       }

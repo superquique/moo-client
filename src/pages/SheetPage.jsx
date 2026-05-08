@@ -13,6 +13,7 @@ function SheetPage ({}) {
     const [staffs, setStaffs] = useState(null);
     const [selectedLength, setSelectedLength] = useState("4")
     const [selectedOctave, setSelectedOctave] = useState(0);
+    const [isFABOpen, setIsFABOpen] = useState(0);
     const debouncedSheet = useDebounce(sheet, 2000);
     const { id } = useParams();
 
@@ -151,9 +152,9 @@ function SheetPage ({}) {
                     </button>
                 </div>
 
-                <div className="fab fab-flower">
+                <div className={`fab fab-flower ${isFABOpen ? 'open' : ''}`}>
                     {/* a focusable div with tabIndex is necessary to work on all browsers. role="button" is necessary for accessibility */}
-                    <div tabIndex={0} role="button" className="btn btn-circle text-2xl btn-primary">
+                    <div tabIndex={0} role="button" onClick={(e) => setIsFABOpen(true)} className="btn btn-circle text-2xl btn-primary">
                         {selectedLength === '' && '𝅗'}
                         {selectedLength === '2' && '𝅗𝅥'}
                         {selectedLength === '4' && '𝅘𝅥'}
@@ -162,7 +163,7 @@ function SheetPage ({}) {
                     </div>
 
                     {/* Main Action button replaces the original button when FAB is open */}
-                    <button className="fab-main-action btn btn-circle">
+                    <button onClick={(e) => setIsFABOpen(false)} className="fab-close btn btn-circle">
                         <PencilIcon className="size-5 text-black-500" />
                     </button>
 
