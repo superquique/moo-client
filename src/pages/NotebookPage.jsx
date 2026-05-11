@@ -70,24 +70,26 @@ function NotebookPage () {
             { isFormOpen && <AddSheetForm onAddSheet={addSheet} onCloseForm={closeForm} /> }
             <ul className="list bg-base-100 rounded-box shadow-md">
 
-                <li className="sticky top-16 z-100 bg-base-100  shadow-sm flex justify-between items-center p-4 pb-2 text-xs tracking-wide">
-                    <div className="flex items-center gap-2">
-                        <Link to={`/notebooks`}>Notebooks </Link> /  {notebook && notebook.name}
+                <div className="sticky top-16 z-100 bg-base-100 shadow-sm flex flex-col lg:flex-row justify-between items-center pt-2 px-2 pb-2 text-xs tracking-wide">
+                    <div className="flex items-center justify-between w-full lg:w-auto lg:gap-4 p-1">
+                        <div>
+                            <Link to={`/notebooks`}>Notebooks</Link> / {notebook && notebook.name}
+                        </div>
                         
                         <button onClick={openForm} className="btn btn-square btn-primary">
                             <DocumentPlusIcon className="size-6 text-black-500" />
                         </button>
                     </div>
 
-                    <div className="flex gap-2 ml-2 items-center">
-                        <input 
+                    <div className="flex items-center w-full lg:w-128 pt-2">
+                        <input
                             type="text" 
                             placeholder="Search"
-                            className="input input-bordered lg:w-128"
+                            className="input input-bordered w-full"
                             onChange={e => searchByTitle(e.target.value)} 
                         />
                     </div>
-                </li>
+                </div>
 
                 {!sheets && 
                     <div className="flex p-5 items-center justify-center">
