@@ -68,11 +68,11 @@ function SheetListPage () {
                         </button>
                     </div>
 
-                    <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 ml-2 items-center">
                         <input 
                             type="text" 
                             placeholder="Search"
-                            className="input input-bordered w-64 lg:w-128"
+                            className="input input-bordered lg:w-128"
                             onChange={e => searchByTitle(e.target.value)} 
                         />
                     </div>
