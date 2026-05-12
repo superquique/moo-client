@@ -33,8 +33,8 @@ function SignupPage(props) {
 
   
   return (
-    <div className="flex-grow flex items-center justify-center bg-base-100">
-      <div className="card w-100 bg-base-200 card-xl shadow-sm">
+    <div className="flex flex-grow items-center justify-center bg-base-200 lg:bg-base-100">
+      <div className="lg:card w-100 bg-base-200 card-xl lg:shadow-sm">
         <div className="card-body">
           <h2 className="card-title">Sign Up</h2>
 
