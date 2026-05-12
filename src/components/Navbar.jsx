@@ -9,7 +9,7 @@ function Navbar () {
 
     return (
         <nav className="sticky top-0 z-1000">
-            <div className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md">
+            <div className="max-lg:collapse bg-base-300 lg:bg-base-200 shadow-sm w-full rounded-md">
                 <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
                 <label htmlFor="navbar-1-toggle" className="fixed inset-0 hidden max-lg:peer-checked:block"></label>
                 <div className="collapse-title navbar">
@@ -25,7 +25,7 @@ function Navbar () {
                             </div>
                         </NavLink>
                         <NavLink to="/">
-                            <button className="btn btn-ghost text-xl">
+                            <button className="btn btn-ghost text-base font-bold lg:text-xl">
                                 Moo Music Notebook
                             </button>
                         </NavLink>
