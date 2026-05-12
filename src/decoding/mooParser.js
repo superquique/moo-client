@@ -29,12 +29,9 @@ export function divideMesaures (notes, bpm, noteValue) {
 
     notes.forEach((note) => {
         const decodedNote = decodeNote(note);
-        console.log(decodedNote)
         currentMeasure.push(decodedNote);
         
         let noteLength = decodedNote.length || 1;
-
-        console.log("noteLength", noteLength, decodedNote.length);
 
         measureValue += 1 / noteLength;
 
