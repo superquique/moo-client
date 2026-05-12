@@ -135,22 +135,18 @@ function NotebookListPage () {
                 
                 {notebooks && notebooks.map((notebook) => (
                     
-                    <li key={notebook._id} className="list-row">
-                        <div className="flex items-center">
-                            <FolderIcon className="size-6 text-black-500" />
-                        </div>
-                        <div className="flex items-center">
-                            <Link key={notebook._id} to={`/notebooks/${notebook._id}`}>
-                                <div>{notebook.name}</div>
-                            </Link>
-                        </div>
+                    <li key={notebook._id} className="list-row items-center">
+                        <FolderIcon className="size-6 text-black-500" />
+                        <Link key={notebook._id} to={`/notebooks/${notebook._id}`}>
+                            {notebook.name}
+                        </Link>
+                        
                         <button onClick={() => toggleFavorite(notebook._id, notebook.isFavorite)} className="btn btn-square btn-ghost">
                             {notebook.isFavorite ? 
                                 <HeartIconSolid className="size-5 text-secondary" />
                                 :
                                 <HeartIcon className="size-5 text-black-500" />
                             }
-                            
                         </button>
                         <button className="btn btn-square btn-ghost" onClick={(e) => startEdition(notebook)}>
                             <PencilSquareIcon className="size-5 text-black-500" />

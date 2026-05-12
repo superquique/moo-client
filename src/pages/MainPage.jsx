@@ -65,11 +65,11 @@ function MainPage () {
                     {sheets && sheets.map((sheet, i) => (
                         <div key={`carousel-item-${i}`} className="carousel-item p-2">
                             <div className="card bg-base-100 w-60 card-sm shadow-sm">
-                                <figure className="pt-10">
-                                    <Link key={sheet._id} to={`/sheets/${sheet._id}`}>    
+                                <Link key={sheet._id} to={`/sheets/${sheet._id}`}>
+                                    <figure className="pt-10">    
                                         <MusicalNoteIcon className="size-22 text-black-500" />
-                                    </Link>
-                                </figure>
+                                    </figure>
+                                </Link>
                                 <div className="card-body">
                                     <Link key={sheet._id} to={`/sheets/${sheet._id}`}>    
                                         <h2 className="card-title">{sheet.title}</h2>

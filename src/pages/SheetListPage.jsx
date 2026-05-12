@@ -110,7 +110,7 @@ function SheetListPage () {
                             </div>
                         </div>
                         <div className="flex items-center gap-10">
-                            <div>
+                            <div className="w-full">
                                 <Link key={sheet._id} to={`/sheets/${sheet._id}`}>
                                     <div className="text-base">{sheet.title}</div>
                                 </Link>
