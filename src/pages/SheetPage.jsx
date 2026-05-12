@@ -15,15 +15,20 @@ function SheetPage ({}) {
     const [selectedOctave, setSelectedOctave] = useState(0);
     const [isFABOpen, setIsFABOpen] = useState(0);
     const debouncedSheet = useDebounce(sheet, 2000);
+    const [canSave, setCanSave] = useState(false);
     const { id } = useParams();
 
     const measuresPerStaff = 4;
 
     useEffect(() => {
         console.log("Updating sheet with...", debouncedSheet);
-        if (debouncedSheet !== null) {
+        console.log("Original sheet", sheet);
+        if (debouncedSheet !== null && canSave) {
             notifyPromise(updateSheet(debouncedSheet));
+        } else if (debouncedSheet !== null) {
+            setCanSave(true);
         }
+
     }, [debouncedSheet]);
 
     useEffect(() => {
@@ -59,7 +64,6 @@ function SheetPage ({}) {
     const updateSheet = (payload) => {
         payload.id = id;
         return sheetsService.updateSheet(id, payload)
-        
     }   
 
     const onChange = async (value, field) => {        
