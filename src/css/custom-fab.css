@@ -4,6 +4,7 @@
   @layer daisyui.l1.l2.l3 {
     @apply pointer-events-none fixed end-4 bottom-4 z-999 flex flex-col-reverse items-end gap-2 text-sm whitespace-nowrap;
     > * {
+      grid-area: 1/1;
       @apply pointer-events-auto flex items-center gap-2;
       &:hover,
       &:has(:focus-visible) {
@@ -18,7 +19,6 @@
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
     }
-
     .fab-close {
       @apply absolute end-0 bottom-0;
     }
@@ -48,22 +48,61 @@
       transition-delay: 30ms;
     }
     > :nth-child(4) {
-      transition-delay: 60ms;
+      transition-delay: 30ms;
     }
     > :nth-child(5) {
-      transition-delay: 90ms;
+      transition-delay: 30ms;
     }
     > :nth-child(6) {
-      transition-delay: 120ms;
+      transition-delay: 60ms;
     }
     > :nth-child(7) {
-      transition-delay: 150ms;
+      transition-delay: 60ms;
     }
     > :nth-child(8) {
-      transition-delay: 180ms;
+      transition-delay: 60ms;
     }
     > :nth-child(9) {
-      transition-delay: 210ms;
+      transition-delay: 60ms;
+    }
+    > :nth-child(10) {
+      transition-delay: 60ms;
+    }
+    > :nth-child(11) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(12) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(13) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(14) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(15) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(16) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(17) {
+      transition-delay: 90ms;
+    }
+    > :nth-child(18) {
+      transition-delay: 100ms;
+    }
+    > :nth-child(19) {
+      transition-delay: 100ms;
+    }
+    > :nth-child(20) {
+      transition-delay: 100ms;
+    }
+    > :nth-child(21) {
+      transition-delay: 100ms;
+    }
+    > :nth-child(22) {
+      transition-delay: 100ms;
     }
     &.open {
       > [tabindex]:first-child {
@@ -75,292 +114,116 @@
     }
   }
 }
-.fab-flower {
+.fab-dahlia {
   @layer daisyui.l1.l2.l3 {
     @apply grid;
-    --position: 0rem;
+    --position: 140%;
     > *:nth-child(-n + 2) {
       --position: 0rem;
     }
     > * {
       grid-area: 1/1;
-      --degree: 180deg;
+      --length: calc(3 + var(--row) * 2);
+      --degree: calc((180 - 90/(var(--length) - 1) * var(--index)) * 1deg);
       --flip-degree: calc(180deg - var(--degree));
-      transform: translateX(calc(cos(var(--degree)) * var(--position)))
-        translateY(calc(sin(var(--degree)) * -1 * var(--position)));
+      --total-position: calc(130% * var(--row) + var(--position));
+      transform: translateX(calc(cos(var(--degree)) * var(--total-position)))
+        translateY(calc(sin(var(--degree)) * -1 * var(--total-position)));
       [dir="rtl"] & {
-        transform: translateX(calc(cos(var(--flip-degree)) * var(--position)))
-          translateY(calc(sin(var(--flip-degree)) * -1 * var(--position)));
+        transform: translateX(calc(cos(var(--flip-degree)) * var(--total-position)))
+          translateY(calc(sin(var(--flip-degree)) * -1 * var(--total-position)));
       }
     }
-    > :nth-child(n + 10) {
+    > :nth-child(n + 25) {
       @apply hidden;
     }
-    &:has(:nth-child(3)) {
-      --position: 140%;
-      > :nth-child(3) {
-        --degree: 135deg;
-      }
+    > :nth-child(3) {
+      --index: 0;
+      --row: 0;
     }
-    &:has(:nth-child(4)) {
-      --position: 140%;
-      > :nth-child(3) {
-        --degree: 165deg;
-      }
-      > :nth-child(4) {
-        --degree: 105deg;
-      }
+    > :nth-child(4) {
+      --index: 1;
+      --row: 0;
     }
-    &:has(:nth-child(5)) {
-      --position: 180%;
-      > :nth-child(3) {
-        --degree: 180deg;
-      }
-      > :nth-child(4) {
-        --degree: 135deg;
-      }
-      > :nth-child(5) {
-        --degree: 90deg;
-      }
+    > :nth-child(5) {
+      --index: 2;
+      --row: 0;
     }
-    &:has(:nth-child(6)) {
-      --position: 220%;
-      > :nth-child(3) {
-        --degree: 180deg;
-      }
-      > :nth-child(4) {
-        --degree: 150deg;
-      }
-      > :nth-child(5) {
-        --degree: 120deg;
-      }
-      > :nth-child(6) {
-        --degree: 90deg;
-      }
+    > :nth-child(6) {
+      --index: 0;
+      --row: 1;
     }
-    &:has(:nth-child(7)) {
-      --position: 260%;
-      > :nth-child(3) {
-        --degree: 180deg;
-      }
-      > :nth-child(4) {
-        --degree: 157.5deg;
-      }
-      > :nth-child(5) {
-        --degree: 135deg;
-      }
-      > :nth-child(6) {
-        --degree: 112.5deg;
-      }
-      > :nth-child(7) {
-        --degree: 90deg;
-      }
+    > :nth-child(7) {
+      --index: 1;
+      --row: 1;
     }
-    &:has(:nth-child(8)) {
-      --position: 260%;
-      > :nth-child(3) {
-        --degree: 180deg;
-      }
-      > :nth-child(4) {
-        --degree: 157.5deg;
-      }
-      > :nth-child(5) {
-        --degree: 135deg;
-      }
-      > :nth-child(6) {
-        --degree: 112.5deg;
-      }
-      > :nth-child(7) {
-        --degree: 90deg;
-      }
+    > :nth-child(8) {
+      --index: 2;
+      --row: 1;
     }
-    &:has(:nth-child(9)) {
-      > :nth-child(8) {
-        --position: 0%;
-        --degree: 135deg;
-      }
-      > :nth-child(9) {
-        --position: 0%;
-        --degree: 135deg;
-      }
+    > :nth-child(9) {
+      --index: 3;
+      --row: 1;
     }
-  }
-}
-.fab-flower-outer {
-  @layer daisyui.l1.l2.l3 {
-    @apply grid;
-    --outer-position: 0rem;
-    > * {
-      grid-area: 1/1;
-      --outer-position: calc(var(--position) + 390%);
-      --degree: 180deg;
-      --flip-degree: calc(180deg - var(--degree));
-      transform: translateX(calc(cos(var(--degree)) * var(--outer-position)))
-        translateY(calc(sin(var(--degree)) * -1 * var(--outer-position)));
-      [dir="rtl"] & {
-        transform: translateX(calc(cos(var(--flip-degree)) * var(--outer-position)))
-          translateY(calc(sin(var(--flip-degree)) * -1 * var(--outer-position)));
-      }
+    > :nth-child(10) {
+      --index: 4;
+      --row: 1;
     }
-    > :nth-child(n + 8) {
-      @apply hidden;
+    > :nth-child(11) {
+      --index: 0;
+      --row: 2;
     }
-    &:has(:nth-child(1)) {
-      > :nth-child(1) {
-        --degree: 135deg;
-      }
+    > :nth-child(12) {
+      --index: 1;
+      --row: 2;
     }
-    &:has(:nth-child(2)) {
-      > :nth-child(1) {
-        --degree: 157.5deg;
-      }
-      > :nth-child(2) {
-        --degree: 112.5deg;
-      }
+    > :nth-child(13) {
+      --index: 2;
+      --row: 2;
     }
-    &:has(:nth-child(3)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 135deg;
-      }
-      > :nth-child(3) {
-        --degree: 90deg;
-      }
+    > :nth-child(14) {
+      --index: 3;
+      --row: 2;
     }
-    &:has(:nth-child(4)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 150deg;
-      }
-      > :nth-child(3) {
-        --degree: 120deg;
-      }
-      > :nth-child(4) {
-        --degree: 90deg;
-      }
+    > :nth-child(15) {
+      --index: 4;
+      --row: 2;
     }
-    &:has(:nth-child(5)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 157.5deg;
-      }
-      > :nth-child(3) {
-        --degree: 135deg;
-      }
-      > :nth-child(4) {
-        --degree: 112.5deg;
-      }
-      > :nth-child(5) {
-        --degree: 90deg;
-      }
+    > :nth-child(16) {
+      --index: 5;
+      --row: 2;
     }
-    &:has(:nth-child(6)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 162deg;
-      }
-      > :nth-child(3) {
-        --degree: 144deg;
-      }
-      > :nth-child(4) {
-        --degree: 126deg;
-      }
-      > :nth-child(5) {
-        --degree: 108deg;
-      }
-      > :nth-child(6) {
-        --degree: 90deg;
-      }
+    > :nth-child(17) {
+      --index: 6;
+      --row: 2;
     }
-    &:has(:nth-child(7)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 165deg;
-      }
-      > :nth-child(3) {
-        --degree: 150deg;
-      }
-      > :nth-child(4) {
-        --degree: 135deg;
-      }
-      > :nth-child(5) {
-        --degree: 120deg;
-      }
-      > :nth-child(6) {
-        --degree: 105deg;
-      }
-      > :nth-child(7) {
-        --degree: 90deg;
-      }
+    > :nth-child(18) {
+      --index: 0;
+      --row: 3;
     }
-  }
-}
-.fab-flower-inner {
-  @layer daisyui.l1.l2.l3 {
-    @apply grid;
-    --inner-position: 0rem;
-    > * {
-      grid-area: 1/1;
-      --inner-position: calc(var(--position) + 135%);
-      --degree: 180deg;
-      --flip-degree: calc(180deg - var(--degree));
-      transform: translateX(calc(cos(var(--degree)) * var(--inner-position)))
-        translateY(calc(sin(var(--degree)) * -1 * var(--inner-position)));
-      [dir="rtl"] & {
-        transform: translateX(calc(cos(var(--flip-degree)) * var(--inner-position)))
-          translateY(calc(sin(var(--flip-degree)) * -1 * var(--inner-position)));
-      }
+    > :nth-child(19) {
+      --index: 1;
+      --row: 3;
     }
-    > :nth-child(n + 5) {
-      @apply hidden;
+    > :nth-child(20) {
+      --index: 2;
+      --row: 3;
     }
-    &:has(:nth-child(1)) {
-      > :nth-child(1) {
-        --degree: 135deg;
-      }
+    > :nth-child(21) {
+      --index: 5;
+      --row: 3;
     }
-    &:has(:nth-child(2)) {
-      > :nth-child(1) {
-        --degree: 157.5deg;
-      }
-      > :nth-child(2) {
-        --degree: 112.5deg;
-      }
+    > :nth-child(22) {
+      --index: 6;
+      --row: 3;
     }
-    &:has(:nth-child(3)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 135deg;
-      }
-      > :nth-child(3) {
-        --degree: 90deg;
-      }
+    > :nth-child(23) {
+      --index: 7;
+      --row: 3;
     }
-    &:has(:nth-child(4)) {
-      > :nth-child(1) {
-        --degree: 180deg;
-      }
-      > :nth-child(2) {
-        --degree: 150deg;
-      }
-      > :nth-child(3) {
-        --degree: 120deg;
-      }
-      > :nth-child(4) {
-        --degree: 90deg;
-      }
+    > :nth-child(24) {
+      --index: 8;
+      --row: 3;
     }
   }
 }
