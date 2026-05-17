@@ -11,7 +11,8 @@ import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 function SheetPage ({}) {
     const [sheet, setSheet] = useState(null);
     const [staffs, setStaffs] = useState(null);
-    const [selectedLength, setSelectedLength] = useState("4")
+    const [selectedLength, setSelectedLength] = useState("4");
+    const [selectedAccidental, setSelectedAccidental] = useState("#");
     const [selectedOctave, setSelectedOctave] = useState(0);
     const [isFABOpen, setIsFABOpen] = useState(0);
     const debouncedSheet = useDebounce(sheet, 2000);
@@ -87,6 +88,10 @@ function SheetPage ({}) {
         setSelectedLength(e.target.value);
     }
 
+    const onSelecteAccidental = (e) => {
+        setSelectedAccidental(e.target.value);
+    }
+
     const onSelectOctave = (octaveDiff) => {
         if (selectedOctave + octaveDiff < -2) {
             return;
@@ -156,7 +161,7 @@ function SheetPage ({}) {
                     </button>
                 </div>
 
-                <div className={`fab fab-flower ${isFABOpen ? 'open' : ''}`}>
+                <div className={`fab fab-dahlia ${isFABOpen ? 'open' : ''}`}>
                     {/* a focusable div with tabIndex is necessary to work on all browsers. role="button" is necessary for accessibility */}
                     <div tabIndex={0} role="button" onClick={(e) => setIsFABOpen(true)} className="btn btn-circle text-2xl btn-primary">
                         {selectedLength === '' && '𝅗'}
@@ -172,6 +177,19 @@ function SheetPage ({}) {
                     </button>
 
                     {/* buttons that show up when FAB is open */}
+                    
+                    {/* Control buttons */}
+                    <button onClick={() => onSelectOctave(-1)} className="btn btn-circle">
+                        <ChevronDownIcon className="size-5 text-black-500" />
+                    </button>
+                    <button onClick={() => onSelectOctave(1)} className="btn btn-circle">
+                        <ChevronUpIcon className="size-5 text-black-500" />
+                    </button>
+                    <button onClick={deleteNote} className="btn btn-circle">
+                        <BackspaceIcon className="size-5 text-black-500" />
+                    </button>
+
+                    {/* length buttons */}
                     <button 
                         className={`btn text-2xl btn-circle ${selectedLength === '' ? 'btn-primary': ''}`} 
                         value="" onClick={onSelectLength}>
@@ -198,58 +216,88 @@ function SheetPage ({}) {
                         𝅘𝅥𝅯
                     </button>
 
-                    {/* Buttons to show in the outer circle */}
-                    <div className="fab-flower-outer">
-                        <button value="a" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            A
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                        <button value="b" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            B
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                        <button value="c" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            C
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                        <button value="d" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            D
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                        <button value="e" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            E
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                        <button value="f" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            F
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                        <button value="g" onClick={addNote} className="btn btn-circle">
-                            {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
-                            G
-                            {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
-                        </button>
-                    </div>
-
-                    {/* Buttons to show in the inner circle */}
-                    <div className="fab-flower-inner">
-                        <button onClick={() => onSelectOctave(-1)} className="btn btn-circle">
-                            <ChevronDownIcon className="size-5 text-black-500" />
-                        </button>
-                        <button onClick={() => onSelectOctave(1)} className="btn btn-circle">
-                            <ChevronUpIcon className="size-5 text-black-500" />
-                        </button>
-                        <button onClick={deleteNote} className="btn btn-circle">
-                            <BackspaceIcon className="size-5 text-black-500" />
-                        </button>
-                        
-                    </div>
+                    {/* note buttons */}
+                    <button value="c" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        C
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value="d" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        D
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value="e" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        E
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value="f" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        F
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value="g" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        G
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value="a" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        A
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value="b" onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        B
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    
+                    {/* flat button */}
+                    <button 
+                        className={`btn btn-circle text-2xl ${selectedAccidental === 'b' ? 'btn-primary': ''}`} 
+                        value="b" onClick={onSelecteAccidental}>
+                        ♭
+                    </button>
+                    
+                    {/* semitone buttons */}
+                    <button value={selectedAccidental === "b" ? "db" : "c#"} onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        {selectedAccidental === "b" && "Db"}
+                        {selectedAccidental === "#" && "C#"}
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value={selectedAccidental === "b" ? "eb" : "d#"} onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        {selectedAccidental === "b" && "Eb"}
+                        {selectedAccidental === "#" && "D#"}
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value={selectedAccidental === "b" ? "gb" : "f#"} onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        {selectedAccidental === "b" && "Gb"}
+                        {selectedAccidental === "#" && "F#"}
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value={selectedAccidental === "b" ? "ab" : "g#"} onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        {selectedAccidental === "b" && "Ab"}
+                        {selectedAccidental === "#" && "G#"}
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    <button value={selectedAccidental === "b" ? "bb" : "a#"} onClick={addNote} className="btn btn-circle">
+                        {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
+                        {selectedAccidental === "b" && "Bb"}
+                        {selectedAccidental === "#" && "A#"}
+                        {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
+                    </button>
+                    
+                    {/* sharp button */}
+                    <button 
+                        className={`btn btn-circle text-2xl ${selectedAccidental === '#' ? 'btn-primary': ''}`} 
+                        value="#" onClick={onSelecteAccidental}>
+                        ♯
+                    </button>
                 </div>
 
 
