@@ -35,7 +35,7 @@ function Note ({length, accidental, x, y, absIndex, gap}) {
                     style={{stroke: "black", strokeWidth: 1}}
                 />)
             })}
-            <text x={x - 10} y={y} fill="red" fontSize="20">
+            <text x={x - 8} y={y} fill="black" fontSize="20">
                 {accidentals[accidental]}
             </text>
             <text x={x} y={y} fill="black" fontSize="20">
