@@ -8,7 +8,6 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
     const lines = [0, 1, 2, 3, 4]
     const gap = 5;
     const hGap = 20;
-    let extraHGap = 0;
     const cIndex = 11;
     const noteIndexes = {
         'c': cIndex,
@@ -36,14 +35,6 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
 
     const bpm = timeSignature ? parseInt(timeSignature.split("/")[0]) : "";
     const noteValue = timeSignature ? parseInt(timeSignature.split("/")[1]) : "";
-
-    if (clef) {
-        extraHGap += hGap;
-    }    
-
-    if (timeSignature) {
-        extraHGap += hGap;
-    }
     
     return (
         <svg x="0" y={y} width="100%" height="20%" viewBox="0 0 400 100" overflow="visible">
@@ -82,6 +73,17 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
 
                         if (showTimeSignature && i === 0) {
                             multiplier *= 0.9;
+                        }
+
+                        console.log(note.name, noteLength);
+                        if (note.name === "r" && noteLength === 1) {
+                            console.log("entered the pos x");
+                            if (i === 0) {
+                                xPos *= 1.5;
+                            } else {
+                                xPos *= 4;
+                            }
+                            
                         }
 
                         currentX += (multiplier * hGap);
