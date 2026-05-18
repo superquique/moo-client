@@ -1,4 +1,5 @@
 import Note from "./Note";
+import Rest from "./Rest";
 import Clef from "./Clef";
 import TimeSignature from "./TimeSignature";
 import Barline from "./Barline";
@@ -16,7 +17,15 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
         'f': cIndex - 3,
         'g': cIndex - 4,
         'a': cIndex - 5,
-        'b': cIndex - 6
+        'b': cIndex - 6,
+    }
+
+    const restIndexes = {
+        "": '6',
+        "2": '6',
+        "4": '8',
+        "8": '8',
+        "16": '9',
     }
 
     const clefIndexes = {
@@ -77,6 +86,16 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
 
                         currentX += (multiplier * hGap);
 
+                        if (note.name === "r") {
+                            return <Rest 
+                                key={`rest-${j}`}
+                                length={note.length}
+                                x={xPos}
+                                y={(restIndexes[note.length]) * gap/2 + 40}
+                                gap={gap}
+                            />
+                        }
+
                         return <Note 
                             key={`note-${j}`}
                             length={note.length}
@@ -90,7 +109,7 @@ function Staff({clef, timeSignature, measures, x, y, showTimeSignature}) {
 
                     <Barline barline="single" x="99" y={60}/>
                 </svg>
-º           })}
+            })}
         
         </svg>
     )
