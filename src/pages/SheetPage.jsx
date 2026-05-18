@@ -118,6 +118,12 @@ function SheetPage ({}) {
         onChange(notes.trim(), "notes");
     }
 
+    const addRest = (e) => {
+        const newRest = `r${selectedLength}`;
+        const notes = sheet.notes + ` ${newRest}`;
+        onChange(notes.trim(), "notes");
+    }
+
     const deleteNote = (e) => {
         const notes = sheet.notes.split(" ");
         notes.pop();
@@ -273,6 +279,16 @@ function SheetPage ({}) {
                         {selectedAccidental === "#" && "D#"}
                         {selectedOctave > 0 ? "'".repeat(selectedOctave) : ""}
                     </button>
+                    
+                    {/* rest button */}
+                    <button value="r" onClick={addRest} className="btn btn-circle text-2xl">
+                        {selectedLength === '' && '𝄻'}
+                        {selectedLength === '2' && '𝄼'}
+                        {selectedLength === '4' && '𝄽'}
+                        {selectedLength === '8' && '𝄾'}
+                        {selectedLength === '16' && '𝄿'}
+                    </button>
+
                     <button value={selectedAccidental === "b" ? "gb" : "f#"} onClick={addNote} className="btn btn-circle">
                         {selectedOctave < 0 ? ",".repeat(Math.abs(selectedOctave)) : ""}
                         {selectedAccidental === "b" && "Gb"}
