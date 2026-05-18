@@ -1,6 +1,6 @@
 // note = n#2'
 export function decodeNote (note) {
-    const match = note.match(/^([a-gA-G][#bn]?)(\d*)([,']*)/);
+    const match = note.match(/^([a-gA-Gr][#bn]?)(\d*)([,']*)/);
 
     if (match) {
         let [_, note, length, octave] = match;
