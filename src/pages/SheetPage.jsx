@@ -88,7 +88,7 @@ function SheetPage ({}) {
         setSelectedLength(e.target.value);
     }
 
-    const onSelecteAccidental = (e) => {
+    const onSelectedAccidental = (e) => {
         setSelectedAccidental(e.target.value);
     }
 
@@ -262,7 +262,7 @@ function SheetPage ({}) {
                     {/* flat button */}
                     <button 
                         className={`btn btn-circle text-2xl ${selectedAccidental === 'b' ? 'btn-primary': ''}`} 
-                        value="b" onClick={onSelecteAccidental}>
+                        value="b" onClick={onSelectedAccidental}>
                         ♭
                     </button>
                     
@@ -311,7 +311,7 @@ function SheetPage ({}) {
                     {/* sharp button */}
                     <button 
                         className={`btn btn-circle text-2xl ${selectedAccidental === '#' ? 'btn-primary': ''}`} 
-                        value="#" onClick={onSelecteAccidental}>
+                        value="#" onClick={onSelectedAccidental}>
                         ♯
                     </button>
                 </div>
